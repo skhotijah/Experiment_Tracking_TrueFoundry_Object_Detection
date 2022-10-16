@@ -1,14 +1,20 @@
-import os
-import time ,sys
-import cv2
 import streamlit as st
 import pandas as pd
-import numpy as np
-import urllib
-import urllib.request
+import cv2
 from PIL import Image, ImageEnhance
+import numpy as np
+import os
+#import tensorflow as tf
+#import tensorflow_hub as hub
+import time ,sys
 from streamlit_embedcode import github_gist
+import urllib.request
+import urllib
 import moviepy.editor as moviepy
+import cv2
+import numpy as np
+import time
+import sys
 
 def object_detection_video():
     #object_detection_video.has_beenCalled = True
@@ -16,11 +22,12 @@ def object_detection_video():
     CONFIDENCE = 0.5
     SCORE_THRESHOLD = 0.5
     IOU_THRESHOLD = 0.5
-    config_path = r'/home/skhotijah/TRUEFOUNDRY/Experiment_Tracking_TrueFoundry_Object _Detection/demo/config_n_weights/yolov3.cfg'
-    weights_path = r'/home/skhotijah/TRUEFOUNDRY/ObjectDetection/config_n_weights/yolov3.weights'
+    config_path = r'/yolov.cfg'
+    weights_path = r'/yolov.weights'
     font_scale = 1
     thickness = 1
-    f = open(r'/home/skhotijah/TRUEFOUNDRY/Experiment_Tracking_TrueFoundry_Object _Detection/demo/labels/coconames.txt','r')
+
+    f = open(r'/classes.txt','r')
     lines = f.readlines()
     labels = [line.strip() for line in lines]
     colors = np.random.randint(0, 255, size=(len(labels), 3), dtype="uint8")
@@ -164,11 +171,11 @@ def object_detection_image():
         nmsThreshold= st.slider('Threshold', 0, 100, 20)
         #classNames = []
         whT = 320
-        f = open(r'/home/skhotijah/TRUEFOUNDRY/Experiment_Tracking_TrueFoundry_Object _Detection/demo/labels/coconames.txt','r')
+        f = open(r'/classes.txt','r')
         lines = f.readlines()
         classNames = [line.strip() for line in lines]
-        config_path = r'/home/skhotijah/TRUEFOUNDRY/Experiment_Tracking_TrueFoundry_Object _Detection/demo/config_n_weights/yolov3.cfg'
-        weights_path = r'/home/skhotijah/TRUEFOUNDRY/Experiment_Tracking_TrueFoundry_Object _Detection/demo/config_n_weights/yolov3.weights'
+        config_path = r'yolov.cfg'
+        weights_path = r'yolov.weights'
         net = cv2.dnn.readNetFromDarknet(config_path, weights_path)
         net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
         net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
@@ -233,17 +240,15 @@ def object_detection_image():
 
 
 def main():
-    new_title = '<p style="font-size: 42px;">Object Detection</p>'
+    new_title = '<p style="font-size: 42px;">Welcome to my Object Detection App!</p>'
     read_me_0 = st.markdown(new_title, unsafe_allow_html=True)
 
     read_me = st.markdown("""
     This project was built using Streamlit and OpenCV 
     to demonstrate YOLO Object detection in both videos(pre-recorded)
     and images.
-    
-    
-    This YOLO object Detection project can detect 80 objects(i.e classes)
-    in either a video or image. """
+      
+    """
     )
     st.sidebar.title("Select Activity")
     choice  = st.sidebar.selectbox("MODE",("About","Object Detection(Image)","Object Detection(Video)"))

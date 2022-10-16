@@ -18,7 +18,7 @@ args = parser.parse_args()
 logging.basicConfig(level=logging.INFO)
 
 job = Job(
-    name="red-wine-batch",
+    name="object detection",
     image=Build(
         build_spec=PythonBuild(command="python infer_batch.py"),
     ),

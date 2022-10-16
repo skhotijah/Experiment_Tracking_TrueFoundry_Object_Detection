@@ -1,5 +1,11 @@
 pandas==1.4.4
-
+numpy==1.22.4
+imbalanced-learn==0.9.1
+scikit-learn==1.1.2
+tensorflow=2.0.0
+maturin==0.12.20
+gradio
+protobuf
 # for experiment tracking and model registry
 mlfoundry>=0.4.3,<0.5
 
