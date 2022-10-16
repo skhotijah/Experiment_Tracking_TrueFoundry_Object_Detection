@@ -16,7 +16,7 @@ from tensorflow import keras
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tensorflow.keras.optimizers import SGD, Adam, RMSprop
 import matplotlib.pyplot as plt    # for plotting the images
-%matplotlib inline
+#%matplotlib inline
 
 import mlfoundry as mlf
 client = mlf.get_client("https://app.develop.truefoundry.tech/")
